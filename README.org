@@ -24,7 +24,7 @@ https://www.signal.org/en/download/
 git clone https://github.com/joanluc/dockerRpmLxSignal/
      cd dockerRpmLxSignal # $(dirname Dockerfile)
      docker build -t signal_fedora .
-     </code>
+#+END_SRC
 
 
 ** Run Signal
