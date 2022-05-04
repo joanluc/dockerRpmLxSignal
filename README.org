@@ -10,31 +10,33 @@ https://www.signal.org/en/download/
   It why i decided to try to use docker to install and run Signal in my Fedora box.
 
 * Install Signal in Fedora or over RPM based Linux
-  ** Prerequisit
+
+** Prerequisit
      Install docker and launch docker daemon
-     <code>
-     #!/usr/bin/env bash
+#+BEGIN_SRC bash
      sudo dnf install -y moby-engine
      sudo service docker restart
-     </code>
+#+END_SRC
 
-  ** Get Dockerfile and build Signal 
-     git clone 
-     <code>
-     cd $(dirname Dockerfile)
+
+** Get Dockerfile and build Signal
+#+BEGIN_SRC bash
+git clone https://github.com/joanluc/dockerRpmLxSignal/
+     cd dockerRpmLxSignal # $(dirname Dockerfile)
      docker build -t signal_fedora .
      </code>
 
-  ** Run Signal
+
+** Run Signal
      We must run Signal as unprivileged user, create signal_user
-     <code>
+#+BEGIN_SRC bash
      SIGNALUSER=$(whoami)
      docker run -it signal_fedora useradd $SIGNALUSER
-     </code>
+#+END_SRC
 
-  ** Signal musr run in graphic context
-     <code>
+** Signal musr run in graphic context
+#+BEGIN_SRC bash
      xauth list
      read -p "Xauth cookie  ? " COOKIE
      docker run -it --net=host -e DISPLAY -v /tmp/.X11-unix --name="signal_fedora" -u $SIGNALUSER xauth add $COOKIE
-     </code>
+#+END_SRC
